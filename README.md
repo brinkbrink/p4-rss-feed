@@ -22,7 +22,7 @@ For our third group project we'll be  building a PHP application that provides c
 
 ***
 
-### Extra Credit Opportunities
+## Extra Credit Opportunities
 
 **Session Caching:** Every time we hit an RSS page provided by a third party we introduce delay and consume network resources.  Therefore we'll require you to cache the data once retrieved for a number of minutes (example, 10) that will enable your app to store data for that feed via a session and not retrieve the feed data again until the cache period is up.  Each news feed should have a separate cache mechanism. 
 
