@@ -14,7 +14,7 @@ For our third group project we'll be  building a PHP application that provides c
 
 **Integrate RSS data into Feed Pages:** You'll be building pages that integrate customized RSS feeds into the client protosite.  The RSS feed must carry the look and feel of the protosite, plus include an RSS feed from Google, etc.  The pages should carry both the news stories and images if possible that accompany the news items. 
 
-**A News Page with a Link to 3 News categories, each with 3 custom feeds (9 custom feeds in total):**  The entry point to the application should be a page linked to the protosite  as a page with a name such as "News" and then link to pages or an application that accommodates  at least 3 news categories, with at least 3 custom feeds under each.  An example would be a category of Music, under which were feeds named Reggae, Blues & Jazz  (That would be one of the 3 required categories & custom feeds)
+**A News Page with a Link to 3 News categories, each with 3 custom feeds (9 custom feeds in total):**  The entry point to the application should be a page linked to the protosite  as a page with a name such as "News" and then link to pages or an application that accommodates  at least 3 news categories, with at least 3 custom feeds under each.  
 
 **2 Database Tables:** You must store your feed and category information in database tables.  Therefore you'll need a minimum of 2 tables. These tables could greatly resemble the books & categories tables from the Joins lesson on the class website!
 
