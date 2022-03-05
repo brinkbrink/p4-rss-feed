@@ -1,13 +1,13 @@
 <?php
 /**
- * index.php along with survey_view.php allows us to view surveys
+ * index.php along with category_view.php allows us to view subcategories
  * 
- * @package SurveySez
+ * @package P4: RSS Feeds
  * @author E. Brink <brinkbrink@gmail.com>
  * @version 1.0 2022/02/15
  * @link http://www.ebrink.online/
  * @license https://www.apache.org/licenses/LICENSE-2.0
- * @see survey_view.php
+ * @see category_view.php
  * @see Pager.php 
  * @todo none
  */
@@ -29,8 +29,8 @@ date_format(c.DateAdded, '%W %D %M %Y %H:%i') 'DateAdded' from "
 $config->titleTag = 'Categories made with love & PHP in Seattle';
 
 #Fills <meta> tags.  Currently we're adding to the existing meta tags in config_inc.php
-$config->metaDescription = 'Seattle Central\'s IT262 Class Surveys are made with pure PHP! ' . $config->metaDescription;
-$config->metaKeywords = 'Surveys,PHP'. $config->metaKeywords;
+$config->metaDescription = 'Seattle Central\'s IT262 Class Categories are made with pure PHP! ' . $config->metaDescription;
+$config->metaKeywords = 'RSS,PHP'. $config->metaKeywords;
 
 //adds font awesome icons for arrows on pager
 $config->loadhead .= '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">';
@@ -52,7 +52,7 @@ $config->nav1 = array("page.php"=>"New Page!") + $config->nav1; #add a new page 
 
 get_header(); #defaults to theme header or header_inc.php
 ?>
-<h3 align="center">Survey List</h3>
+<h3 align="center">Category List</h3>
 
 <?php
 
@@ -89,7 +89,7 @@ if(mysqli_num_rows($result) > 0)
 
 		echo '
 		<tr>
-		<th scope="row"><a href="' . VIRTUAL_PATH . 'surveys/survey_view.php?id=' . (int)$row['CategoryID'] . '">' . dbOut($row['Title']) . '</a></th>
+		<th scope="row"><a href="' . VIRTUAL_PATH . 'categories/category_view.php?id=' . (int)$row['CategoryID'] . '">' . dbOut($row['Title']) . '</a></th>
 			<td>' . dbOut($row['AdminName']) . '</td>
 			<td>' . dbOut($row['DateAdded']) . '</td>
 	  	</tr>
