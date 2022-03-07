@@ -14,16 +14,22 @@
 
 # '../' works for a sub-folder.  use './' for the root  
 require '../inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials 
- 
-// # SQL statement
-// $sql = "select Title, SurveyID, Description from winter2022_surveys";
+if(isset($_GET['id']) && (int)$_GET['id'] > 0){#proper data must be on querystring
+	$myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
+}else{
+   myRedirect(VIRTUAL_PATH . "categories/index.php"); //send user back to a safe page
+}
 
-$sql = 
-"
-select CONCAT(a.FirstName, ' ', a.LastName) AdminName, s.CategoryID, s.Title, 
-date_format(s.DateAdded, '%W %D %M %Y %H:%i') 'DateAdded' from "
-. PREFIX . "categories s, " . PREFIX . "Admin a where s.AdminID=a.AdminID order by s.DateAdded desc
-";
+$sql = "SELECT FeedID, winter2022_feeds.Title AS Title, Link AS Link, winter2022_categories.Title AS category FROM winter2022_feeds INNER JOIN winter2022_categories ON winter2022_feeds.CategoryID = winter2022_categories.CategoryID WHERE winter2022_feeds.CategoryID = " . $myID;
+
+# WORKING!!!!! SQL statement
+// $sql = "select Title, FeedID from winter2022_feeds";
+
+/* $sql = 
+"select CONCAT(a.FirstName, ' ', a.LastName) AdminName, c.CategoryID, c.Title, 
+date_format(c.DateAdded, '%W %D %M %Y %H:%i') 'DateAdded' from "
+. PREFIX . "categories c, " . PREFIX . "Admin a where c.AdminID=a.AdminID order by c.DateAdded desc
+"; */
 
 
 #Fills <title> tag. If left empty will default to $PageTitle in config_inc.php  
@@ -53,7 +59,7 @@ $config->nav1 = array("page.php"=>"New Page!") + $config->nav1; #add a new page 
 
 get_header(); #defaults to theme header or header_inc.php
 ?>
-<h3 align="center">News Category List</h3>
+<h3 align="center">Sub Category (FEEDS) List</h3>
 
 <?php
 
@@ -74,7 +80,7 @@ if(mysqli_num_rows($result) > 0)
 	<table class="table table-hover">
 		<thead>
 		<tr>
-			<th scope="col">Category</th>
+			<th scope="col">Feeds</th>	
 		</tr>
 		</thead>
 		<tbody>
@@ -82,17 +88,11 @@ if(mysqli_num_rows($result) > 0)
 	
 	while($row = mysqli_fetch_assoc($result))
 	{# process each row
-
 		echo '
 		<tr>
-		<th scope="row"><a href="' . VIRTUAL_PATH . 'categories/feeds.php?id=' . (int)$row['CategoryID'] . '">' . dbOut($row['Title']) . '</a></th>
-			
-			
-	  	</tr>
-  		';
-
-        //  echo '<div align="center"><a href="' . VIRTUAL_PATH . 'survey/survey_view.php?id=' . (int)$row['SurveyID'] . '">' . dbOut($row['Title']) . '</a>';
-        //  echo '</div>';
+			<th><a href="' . VIRTUAL_PATH . 'categories/feed_view.php?id=' . (int)$row['FeedID'] . '">' . dbOut($row['Title']) . '</a></th>
+		</tr>
+		';
 	}
 
 	echo '
