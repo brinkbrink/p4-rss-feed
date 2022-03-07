@@ -14,18 +14,20 @@
 
 # '../' works for a sub-folder.  use './' for the root  
 require '../inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials 
+ 
+// # SQL statement
+// $sql = "select Title, SurveyID, Description from winter2022_surveys";
 
-if(isset($_GET['id']) && (int)$_GET['id'] > 0){ #proper data must be on querystring
-    $myID = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
-}else{
-   myRedirect(VIRTUAL_PATH . "categories/index.php"); // send the user back to a safe page
-}
+$sql = 
+"
+select CONCAT(a.FirstName, ' ', a.LastName) AdminName, s.CategoryID, s.Title, 
+date_format(s.DateAdded, '%W %D %M %Y %H:%i') 'DateAdded' from "
+. PREFIX . "categories s, " . PREFIX . "Admin a where s.AdminID=a.AdminID order by s.DateAdded desc
+";
 
-$sql = "
-SELECT FeedID, winter2022_feeds.Title AS feed, Link AS feedLink, winter2022_categories.Title AS category FROM winter2022_feeds INNER JOIN winter2022_categories ON winter2022_feeds.CategoryID = winter2022_categories.CategoryID WHERE winter2022_feeds.CategoryID = " . $myID;
 
 #Fills <title> tag. If left empty will default to $PageTitle in config_inc.php  
-$config->titleTag = 'Feeds made with love & PHP in Seattle';
+$config->titleTag = 'Categories made with love & PHP in Seattle';
 
 #Fills <meta> tags.  Currently we're adding to the existing meta tags in config_inc.php
 $config->metaDescription = 'Seattle Central\'s IT262 Class Categories are made with pure PHP! ' . $config->metaDescription;
@@ -51,7 +53,7 @@ $config->nav1 = array("page.php"=>"New Page!") + $config->nav1; #add a new page 
 
 get_header(); #defaults to theme header or header_inc.php
 ?>
-<h3 align="center">Feeds on </h3>
+<h3 align="center">News Category List</h3>
 
 <?php
 
@@ -66,31 +68,26 @@ $sql = $myPager->loadSQL($sql);  #load SQL, add offset
 # connection comes first in mysqli (improved) function
 $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
 
-var_dump($result);
-
 if(mysqli_num_rows($result) > 0)
 {#records exist - process
-	if($myPager->showTotal()==1){$itemz = "feed";}else{$itemz = "feeds";}  //deal with plural
-    echo '<div align="center">We have ' . $myPager->showTotal() . ' ' . $itemz . ' on //categoryTitle// !</div>';
-	
 	echo '
 	<table class="table table-hover">
 		<thead>
 		<tr>
-			<th scope="col">Feed</th>
-			<th scope="col">Description</th>
+			<th scope="col">Category</th>
 		</tr>
 		</thead>
 		<tbody>
-  ';
+  	';
 	
 	while($row = mysqli_fetch_assoc($result))
 	{# process each row
 
 		echo '
 		<tr>
-		<th scope="row"><a href="'.dbOut($row['feedLink']).'">' . dbOut($row['feed']) . '</a></th>
-			<td>//description here//</td>
+		<th scope="row"><a href="' . VIRTUAL_PATH . 'rss/feeds.php?id=' . (int)$row['CategoryID'] . '">' . dbOut($row['Title']) . '</a></th>
+			
+			
 	  	</tr>
   		';
 
@@ -105,7 +102,7 @@ if(mysqli_num_rows($result) > 0)
 
 	echo $myPager->showNAV(); # show paging nav, only if enough records	 
 }else{#no records
-    echo "<div align=center>There are currently no feeds for the category requested.</div>";	
+    echo "<div align=center>There are currently no categories.</div>";	
 }
 @mysqli_free_result($result);
 
