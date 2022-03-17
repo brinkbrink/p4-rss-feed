@@ -34,4 +34,4 @@ For our third group project we'll be  building a PHP application that provides c
 
 ## Notes for Setting up on your own server
 
-**Database Setup:** Execute the files "winter2022_categories.php" and "winter2022_feeds.php" in that order to set up the database. New entries can be added. 
+**Database Setup:** Execute the files "winter2022_categories.sql" and "winter2022_feeds.sql" in that order to set up the database. New entries can be added. 
