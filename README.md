@@ -31,3 +31,7 @@ For our third group project we'll be  building a PHP application that provides c
 **Building the capability to add feed data through an administrative interface**.  The best starting point for this piece is the demo_add.php page in the demo folder.
 
 **Building the capability to edit feed data through an administrative interface**.  The best starting point for this piece is the demo_edit.php page in the demo folder.
+
+## Notes for Setting up on your own server
+
+**Database Setup:** Execute the files "winter2022_categories.php" and "winter2022_feeds.php" in that order to set up the database. New entries can be added. 
