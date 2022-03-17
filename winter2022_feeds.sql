@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql.scriptedmiller.com
--- Generation Time: Mar 16, 2022 at 05:01 PM
+-- Generation Time: Mar 16, 2022 at 08:21 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -51,7 +51,9 @@ INSERT INTO `winter2022_feeds` (`FeedID`, `CategoryID`, `AdminID`, `Title`, `Lin
 (7, 3, 1, 'New Yorker', 'https://www.newyorker.com/feed/tech', '2022-03-05 21:16:38', '2022-03-06 05:16:38'),
 (8, 3, 1, 'Wired', 'https://www.wired.com/feed/category/gear/latest/rss', '2022-03-05 21:16:38', '2022-03-06 05:16:38'),
 (9, 3, 1, 'Computer Weekly', 'https://www.computerweekly.com/rss/IT-careers-and-IT-skills.xml', '2022-03-05 21:16:38', '2022-03-06 05:16:38'),
-(10, 2, 0, 'Pitchfork Album Reviews', 'https://pitchfork.com/feed/feed-album-reviews/rss', NULL, '0000-00-00 00:00:00');
+(10, 2, 0, 'Pitchfork Album Reviews', 'https://pitchfork.com/feed/feed-album-reviews/rss', NULL, '0000-00-00 00:00:00'),
+(11, 2, 1, 'Garage Hangover', 'https://garagehangover.com/feed', NULL, '0000-00-00 00:00:00'),
+(12, 2, 1, 'Funk My Soul', 'https://www.funkmysoul.gr/feed', NULL, '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -72,7 +74,7 @@ ALTER TABLE `winter2022_feeds`
 -- AUTO_INCREMENT for table `winter2022_feeds`
 --
 ALTER TABLE `winter2022_feeds`
-  MODIFY `FeedID` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `FeedID` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
