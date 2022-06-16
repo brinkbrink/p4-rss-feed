@@ -22,16 +22,6 @@ For our third group project we'll be  building a PHP application that provides c
 
 ***
 
-## Extra Credit Opportunities
-
-**Session Caching:** Every time we hit an RSS page provided by a third party we introduce delay and consume network resources.  Therefore we'll require you to cache the data once retrieved for a number of minutes (example, 10) that will enable your app to store data for that feed via a session and not retrieve the feed data again until the cache period is up.  Each news feed should have a separate cache mechanism. 
-
-**Cache Time/Date & Clearing:** If RSS data is cached, the retrieval time/date should be displayed on each feed, along with the programmatic ability to clear the cache for that feed. You must also be able to programmatically clear the cache of all feeds. (Delete all existing session data)  
-
-**Building the capability to add feed data through an administrative interface**.  The best starting point for this piece is the demo_add.php page in the demo folder.
-
-**Building the capability to edit feed data through an administrative interface**.  The best starting point for this piece is the demo_edit.php page in the demo folder.
-
 ## Notes for Setting up on your own server
 
 **Database Setup:** Execute the files "winter2022_categories.sql" and "winter2022_feeds.sql" in that order to set up the database. New entries can be added. 
